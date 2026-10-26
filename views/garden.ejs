@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Garden</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="small"><%= user.email %></span>
+    <form action="/logout" method="POST"><button class="link-btn" type="submit">Log out</button></form>
+  </header>
+
+  <h1 class="title">Welcome to the Garden</h1>
+
+  <!-- pick a flower, then click the grass to plant it -->
+  <section class="palette" id="palette" aria-label="Choose a flower">
+    <% flowers.forEach(f => { %>
+      <button type="button" class="pick" data-type="<%= f.type %>" data-label="<%= f.label %>">
+        <img src="/assets/flowers/<%= f.type %>.svg" alt="">
+        <span><%= f.label %></span>
+      </button>
+    <% }) %>
+  </section>
+  <p class="hint" id="hint">Pick a flower to plant. Click a planted flower to read its note.</p>
+
+  <div class="garden" id="garden">
+    <p class="empty" id="emptyNote">Nothing planted yet...</p>
+  </div>
+
+  <!-- popup used for planting, reading and editing -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="close" id="closeBtn" type="button" aria-label="Close">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

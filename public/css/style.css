@@ -1,0 +1,235 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+body {
+  margin: 0;
+  background: #fff;
+  color: #000;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+a { color: #000; }
+
+/* welcome, login and sign up pages: no card, just centered on white */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.card {
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+  color: #000;
+  margin: 18px 16px 10px;
+  line-height: 1.3;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px 0;
+}
+
+/* the flower picker: just the flowers, lined up in a row */
+.palette {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 18px;
+  padding: 8px 16px;
+  overflow-x: auto;
+}
+
+.pick {
+  flex: 0 0 auto;
+  background: none;
+  border: 0;
+  padding: 0 0 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px dashed transparent;
+}
+
+.pick img { height: 72px; }
+.pick.selected { border-bottom-color: #000; }
+
+.hint { text-align: center; margin: 4px 16px 12px; }
+
+/* the garden: grass picture with the flowers lined up in a grid.
+   It grows taller by itself as more flowers are planted. */
+.garden {
+  width: min(1700px, 100%);
+  aspect-ratio: 1890 / 990;
+  margin: 0 auto 24px;
+  padding: 3% 4%;
+  background: url('/assets/the-garden.png') center / cover;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 14px 8px;
+  align-content: start;
+  justify-items: center;
+}
+
+.empty { grid-column: 1 / -1; margin: 0; color: #fff; }
+
+/* a planted flower sitting in its grid space */
+.flower {
+  width: 100%;
+  max-width: 90px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.flower img {
+  display: block;
+  width: 100%;
+  pointer-events: none;
+}
+
+.flower:focus-visible { outline: 1px dashed #fff; outline-offset: 4px; }
+
+/* popup */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 100000;
+}
+.overlay[hidden] { display: none; }
+
+.modal {
+  position: relative;
+  background: #fff;
+  border: 1px solid #000;
+  padding: 28px 24px 24px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.modal h2 {
+  font-family: inherit;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+.modal img.preview { height: 100px; display: block; margin: 0 auto 8px; }
+.modal .date { margin: 0 0 12px; }
+.modal .note { font-size: 0.95rem; text-transform: none; margin: 0 0 16px; word-wrap: break-word; }
+
+.close {
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  background: none;
+  border: 0;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #000;
+}
+
+/* forms and buttons */
+form label { display: block; text-align: left; margin-bottom: 14px; }
+
+input[type='text'], input[type='email'], input[type='password'], input[type='date'] {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px dashed #000;
+  border-radius: 0;
+  background: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #000;
+  text-transform: none;
+}
+input:focus { outline: none; border-bottom-style: solid; }
+
+.btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 0;
+  padding: 11px 26px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover { background: #333; }
+
+.btn-plain { background: #fff; color: #000; }
+.btn-plain:hover { background: #eee; }
+
+.buttons, .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+.link-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.error { color: #000; font-weight: 500; text-decoration: underline wavy #e88aa8; }
+.small { margin-top: 16px; }
+.tagline { margin-bottom: 24px; line-height: 1.6; }
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+@media (max-width: 600px) {
+  .title { font-size: 1.2rem; }
+  .palette { justify-content: flex-start; }
+}
