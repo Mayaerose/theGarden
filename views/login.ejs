@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Garden</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+  <main class="card">
+    <h1 class="title">Welcome back</h1>
+    <% if (message.length > 0) { %>
+      <p class="error"><%= message %></p>
+    <% } %>
+    <form action="/login" method="POST">
+      <label>Email <input type="email" name="email" required autocomplete="email"></label>
+      <label>Password <input type="password" name="password" required autocomplete="current-password"></label>
+      <button class="btn" type="submit">Log In</button>
+    </form>
+    <p class="small">New here? <a href="/signup">Sign up</a></p>
+  </main>
+</body>
+</html>
